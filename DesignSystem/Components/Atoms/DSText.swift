@@ -33,3 +33,25 @@ struct DSText: View {
         DSText("Caption", typography: .caption)
     }
 }
+
+
+struct TypographyModifier: ViewModifier {
+    
+    let typography: Typography
+    
+    public func body(content: Content) -> some View {
+        content
+            .font(.system(size: typography.size))
+            .fontWeight(typography.weight)
+            .foregroundStyle(typography.color.swiftUI)
+    }
+}
+
+extension View {
+    func typography(_ typograph: Typography) -> some View {
+        modifier(TypographyModifier(typography: typograph))
+    }
+    
+    // Example using modifier
+    
+}
